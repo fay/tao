@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<div class="connecting">
+	<h1>{%if successful%}连接成功!{%else%}{%if error_msg%}{{error_msg}}{%else%}连接失败，检查您的输入是否有误。{%endif%}{%endif%}</h1>
+</div>
+{% endblock %}

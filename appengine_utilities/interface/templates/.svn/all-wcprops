@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2/trunk/appengine_utilities/interface/templates
+END
+scheduler_form.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2/trunk/appengine_utilities/interface/templates/scheduler_form.html
+END
+404.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2/trunk/appengine_utilities/interface/templates/404.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2/trunk/appengine_utilities/interface/templates/base.html
+END

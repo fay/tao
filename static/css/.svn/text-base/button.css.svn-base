@@ -1,0 +1,49 @@
+/* submit buttons container */
+ 
+.buttons {
+	line-height: 1;
+	margin: 0 0 1em;
+}
+ 
+/* common/reset style */
+ 
+.buttons input[type ^="submit"],.buttons input[type ^="button"] {
+	line-height: 1;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+ 
+/* emphasized buttons, usually submit */
+ 
+.buttons strong, span.btn {
+	background: url(../images/btn-round.png) no-repeat left;
+	padding: 1em 0 1em 5px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+ 
+/* now actual buttons */
+ 
+.buttons strong input[type ^="submit"],.buttons strong input[type ^="button"],span.btn input {
+	color: #000;
+	background: url(../images/btn-round.png) no-repeat right;
+	margin: 0 -5px 0 0;
+	padding: 1em 10px 1em 5px;
+	border: 0;
+	cursor: pointer;
+}
+ 
+/* secondary buttons, usually cancel */
+ 
+.lesserbtn input {
+	color: #666;
+	background: none;
+	margin-left: 5em;
+	padding: 0;
+	border: 0;
+	border-bottom: 1px solid #666;
+	cursor: pointer;
+}

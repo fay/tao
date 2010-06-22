@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<script  type="text/javascript">
+	{%if delicious%}
+		show();
+	{%endif%}
+	function show(){
+		$.getJSON('http://feeds.delicious.com/v2/json/tags/{{delicious}}/?callback=?', function(data) {
+			var value = document.getElementById('value');
+			var str = "";
+			for(var key in data){
+			str += key + ":" + data[key] + ",";
+			}
+			value.setAttribute('value',str);
+			$('#ac').show()
+		});
+	}
+</script>
+<div id="ac" style="display:none">
+	<applet name="wordle" codebase="http://wordle.appspot.com" mayscript="mayscript" code="wordle.WordleApplet.class" archive="/j/v1282/wordle.jar" height="500" width="100%">
+		<param id="value" name="wordcounts" value="">
+		<param name="java_arguments" value="-Xmx256m -Xms64m">
+	</applet>
+</div>
+<script type="text/javascript" src="http://feeds.delicious.com/v2/js/tags/{{delicious}}?title={{delicious}}'s%20Delicious%20Tags&icon&count=1000&sort=alpha&flow=cloud&name&showadd&color=73adff-3274d0&size=12-35"></script>
+{% endblock %}

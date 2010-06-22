@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="/resource/notify/jquery.notifyBar.css" type="text/css" media="screen"  />
+<script src="http://www.google.com/jsapi?key=ABQIAAAAuRmdpODf8GGH_Di4KWsXjhQP2v-mBUZAbnNwcI_tMhpkOb0IuBSXz-G1x8Pk41luHNd7D6mFZ17fYw"></script>
+<script type="text/javascript">
+    google.load("feeds", "1");
+    
+    function lookupfeed() {
+      url = document.getElementById('account').value; 
+      // Go find it!  Call lookupDone when the search is complete.
+      google.feeds.lookupFeed(url, lookupDone);
+    }
+    function lookupDone(result) {
+      // Make sure we didn't get an error.
+      if (!result.error && result.url != null) {
+        var url = result.url;
+		document.getElementById('account').value = url; 
+		$("form").submit();
+      } else {
+      	$("#info").html("<span class=\"error\">找不到博客的feed源，您可以重试，或者把feed的url复制到表单中</span>");
+      }
+    }
+</script>
+<script type="text/javascript" src="/resource/notify/jquery.notifyBar.js"></script> 
+<script type="text/javascript"> 
+    $(function() {
+      $.notifyBar({ html: "请先告诉我们你的一些信息 :)" });
+    });
+    
+</script>
+{% endblock %}
+{% block content %}
+
+<div class="connecting">
+	<h1 id="info">正在与{ {{service.service_name}} }连接...</h1>
+		<div class="buttons">
+		<form id="form" action="/connect/" method="post" >
+		<input type="hidden" name="service" value="{{service.service}}"/>
+		{% include form_inner %}
+		</div>
+		</form>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load viewtool %}
+{% block css %}
+<link rel="stylesheet" href="/resource/notify/jquery.notifyBar.css" type="text/css" media="screen"  />
+<link href="/resource/slider/css/screen.css" rel="stylesheet" type="text/css" media="screen" />	
+<script src="/resource/notify/jquery.notifyBar.js" type="text/javascript" charset="utf-8"></script> 
+<script type="text/javascript" src="/resource/slider/js/easySlider1.7.js"></script>
+
+
+<script type="text/javascript">
+  function validate_url(url) {
+   if(url && url.indexOf('http://item.taobao.com') === 0){
+      return true;
+   }
+  $.notifyBar({
+    html: "必须是淘宝的链接哦 ;-)",
+    delay: 2000,
+    cls:'error',
+    animationSpeed: "normal"
+  });
+  return false;
+  }
+  
+  $(document).ready(function(){	
+	$("#slider").easySlider({
+		auto: true,
+		continuous: true,
+		numeric: true
+	});
+});
+
+</script>	
+{% endblock %}
+{% block content %}
+	<div class="list">
+	    <div class="realtime" id="slider">
+	        <ul>				
+				<li>
+					<h1>为您推荐最好的淘宝宝贝</h1>
+					<p>利用集体智慧将最好的淘宝宝贝呈现给您。</p>
+			    </li>
+				
+			</ul>
+	        
+	    </div>
+	    {% if user.is_authenticated %}
+	    <div class="menu">
+	        <a class="add" href="#" onclick="$('.addForm').toggle();return false;">Add</a>
+	        {%include 'add_form.html'%}
+	    </div>
+	    {%endif%}
+	    <div class="urls">
+	    	<ol>
+	       	{%for url in urls%}
+        		<li>
+        		   <a href="{{url.key.name}}" target="blank"><strong>{{url.title|safe}}</strong></a> <span class="date">{{url.when|human_time}}</span>
+
+        		   <p id="link_{{forloop.counter}}" class="item_link">{{url.key.name}}</p>
+				   {%for user_url in url.userurl_set%}
+        		      {{user_url.who}} 
+        		   {%endfor%}
+        		   <div>
+        		       <div class="tags">
+        		          	{%for tag in url.tags%}
+        		          	    <a class="tag" id="yellow" href="a">{{tag.name}}</a>
+        		          	{%endfor%}
+        		       </div>
+        		       <div>
+        		       </div>
+        		   </div>
+        		</li>
+    		{%endfor%}
+    		</ol>
+	    </div>
+    </div>
+{% endblock %}
