@@ -16,7 +16,7 @@ class User(db.Model):
   
 class Tag(db.Model):
     #tag = db.StringProperty()
-    num = db.IntegerProperty(default=1)
+    num = db.IntegerProperty(default=0)
     @classmethod
     def new_or_get(cls, tag_name, is_new_url=True):
         tag = Tag.get_or_insert(tag_name)
