@@ -4,9 +4,9 @@ runtime: python
 api_version: 1
 
 handlers:
-- ur: /favicon.ico
-  static_files: static/favicon.ico
-  upload: static/favicon.ico
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
 
 - url: /resource
   static_dir: static
