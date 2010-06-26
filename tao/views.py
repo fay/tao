@@ -5,6 +5,7 @@ from tao.models import *
 from tao import utils
 from google.appengine.ext.webapp.util import login_required
 app = Flask(__name__)
+app.debug = True
 
 @app.route('/')
 def index():
@@ -13,7 +14,6 @@ def index():
     except:
         page = 1
     urls = Url.all().order('-when').fetch(20, 20 * (page - 1))
-    
     return render_template('index.html', urls=urls)
 
 @login_required
