@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load viewtool %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<div class="home">
+	<div class="nav">
+		<a href="/home/all/">全部</a>
+		<a href="/home/blog/">博客</a>
+		<a href="/home/google_reader/">Google阅读器</a>
+		<a href="/home/douban/">豆瓣</a>
+	</div>
+	<div class="main">
+	<h4>我的盆友的新讯息</h4>
+	{%for activity in activities%}
+	{%include 'entry.html'%}
+	{%endfor%}
+	</div>
+	<div class="sidebar">
+		<h4>我关注的盆友({{watches|length}})</h4>
+		<div>
+			<ul>
+			{%for watch in watches %}
+				<li><a href="/user/{{watch}}/">{{watch}}</a></li>
+			{%endfor%}
+			</ul>
+		</div>
+		<h4>谁在关注我({{watch_me.count}})</h4>
+		<div>
+			<ul>
+			{%for watch in watch_me %}
+				<li><a href="/user/{{watch.watcher}}/">{{watch.watcher}}</a></li>
+			{%endfor%}
+			</ul>
+		</div>
+	</div>
+	<div class="none"></div>
+	<div class="paginator">
+	{% autoescape off %}
+		{{paginator}}
+	{% endautoescape %}
+	</div>
+</div>
+{% endblock %}

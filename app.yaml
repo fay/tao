@@ -1,0 +1,22 @@
+application: iamhapppy
+version: 2
+runtime: python
+api_version: 1
+
+handlers:
+- url: /resource
+  static_dir: static
+  
+- url: /resource/css
+  static_dir: static/css
+  
+- url: /resource/images/(.*\.(gif|png|jpg))
+  static_files: static/images/\1
+  upload: static/(.*\.(gif|png|jpg))
+
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
+- url: /.*
+  script: application.py

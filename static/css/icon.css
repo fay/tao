@@ -1,0 +1,29 @@
+.edit {
+	padding-left: 17px;
+	background: url(../images/icons/pencil.png) left center no-repeat;
+}
+
+.delete {
+	padding-left: 17px;
+	background: url(../images/icons/delete.png) left center no-repeat;
+}
+
+.comment {
+	padding-left: 17px;
+	background: url(../images/icons/comment_add.png) left center no-repeat;
+}
+
+.time {
+	padding-left: 17px;
+	background: url(../images/icons/time.png) left center no-repeat;
+}
+
+.tag {
+	padding-left: 17px;
+	background: url(../images/icons/tag_green.png) left center no-repeat;
+}
+
+.user {
+	padding-left: 17px;
+	background: url(../images/icons/user.png) left center no-repeat;
+}

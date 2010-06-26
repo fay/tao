@@ -1,0 +1,270 @@
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	font: 11px 微软雅黑, "Lucida Grande", Verdana, Lucida, Arial, Helvetica,
+		sans-serif;
+	color: #0000FF;
+}
+
+body {
+	background-color: #f0f6f9;
+}
+
+a img {
+	vertical-align: middle;
+	border: none;
+}
+
+a {
+	color: #0000FF;
+	text-decoration: none;
+}
+
+label {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.page {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+.heads {
+	background: url(../images/home_bg_splash.png) right top repeat;
+}
+
+.head {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+.head .logo {
+	float: left;
+}
+
+.head .logo h1 {
+	padding-right: 35px;
+	font-size: 55px;
+	background: url(../images/bubble1.gif) right top no-repeat;
+}
+
+.head .logo h1 a span {
+	color: #f6004f;
+	font-size: 43px;
+	font-weight: bold;
+}
+
+.head .meta a {
+	color: white;
+	background-color: #0000FF;
+}
+
+.head .meta {
+	padding-top: 25px;
+	text-align: right;
+	float: right;
+}
+
+.head .control {
+	padding-top: 10px;
+}
+
+.head .menu {
+	float: left;
+}
+
+.head .paginator {
+	float: right;
+}
+
+.shortcut {
+	background-color: #7eb4e7;
+}
+
+.news {
+	margin-top: 20px;
+	border-top: dotted 1px #eee;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+.news a {
+	color: white;
+}
+
+.news a:hover {
+	text-decoration: underline;
+}
+
+.news img {
+	
+}
+
+.news .recent-posts {
+	padding-left: 10px;
+	width: 25%;
+	float: left;
+}
+
+.news .recent-comments {
+	border-left: dotted 1px white;
+	padding-left: 10px;
+	float: left;
+	width: 25%;
+}
+
+.news .most-read {
+	border-left: dotted 1px white;
+	padding-left: 10px;
+	float: left;
+	width: 25%;
+}
+
+.paginator a {
+	color: white;
+	background-color: #0000FF;
+}
+
+.head .menu a {
+	color: white;
+	background-color: #0000FF;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.content {
+	background-color: #f0f6f9;
+}
+
+.page .sidebar {
+	float: left;
+}
+
+.page .sidebar ul {
+	
+}
+
+.page .sidebar li {
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+
+.page .publish {
+	float: right;
+	width: 80%;
+	padding: 4px 4px 4px 4px;
+}
+
+.page .entries .entry {
+	padding-top: 10px;
+}
+
+.page .entries .entry .meta {
+	float: left;
+	text-align: right;
+	width: 15%;
+	/*color:#f6004f;*/
+}
+
+.page .entries .entry .meta li {
+	padding-bottom: 2px;
+}
+
+.page .entries .entry .content h1 a {
+	color: #462f06;
+}
+
+.page .entries .entry .content {
+	float: right;
+	font-size: 15px;
+	color: #666;
+	border-top: 1px dotted #666;
+	width: 80%;
+}
+
+.page .entries .entry .content h1 a.anchor {
+	color: #f45d2f;
+}
+
+.page .entries .entry .content p strong {
+	color: #f45d2f;
+}
+
+.page .entries .entry .content .title {
+	
+}
+
+.page .entries .entry .content .edit-menu {
+	padding-top: 5px;
+	font-size: 12px;
+}
+
+.page .entries .comments .entry .content .text {
+	float: left;
+}
+
+.page .entries .comments .entry .content .count {
+	color: #bbb;
+	float: right;
+	font: italic bold 2em 'lucida sans', simhei, sans-serif;
+}
+
+}
+.page .entries .entry .content .bookmark {
+	font-size: 12px;
+}
+
+.page .entries .comment-area {
+	padding-top: 10px;
+}
+
+.page .entries .comment-form { /*与.page .entries .entry .content一致*/
+	width: 80%;
+	float: right;
+}
+
+.page .entries .comment-tip {
+	float: left;
+	text-align: right;
+	width: 15%;
+}
+
+.page .paginator {
+	text-align: right;
+}
+
+.page .page-view .tip {
+	font-size: 20px;
+	color: #f6004f;
+}
+
+.page .page-view .tip a {
+	
+}
+
+.none {
+	clear: both;
+}
+
+.footer {
+	text-align: center;
+	padding-bottom: 30px;
+	background-color: #f0f6f9;
+}
+
+.footer p img {
+	vertical-align: middle;
+	border: none;
+}
