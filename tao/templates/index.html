@@ -52,7 +52,7 @@
         		<li>
         		   <a href="{{url.key.name}}" target="blank"><strong>{{url.title|safe}}</strong></a> <span class="date">{{url.when}}</span>
 
-        		   <p id="link_{{forloop.counter}}" class="item_link">{{url.key.name}}</p>
+        		   <p id="" class="item_link">{{url.key.name}}</p>
 				   {%for user_url in url.userurl_set%}
         		      {{user_url.who}} 
         		   {%endfor%}

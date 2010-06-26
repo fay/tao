@@ -4,6 +4,7 @@
 {% block content %}
             <div class="addForm">
 		        <form action="/add/url/" method="get">
+		        {{url}}
 		                {{url.title|safe}} - <a href="{{url.key.name}}">{{url.key.name}}</a>
 		                <br>
 		                <label>Tags:</label><br>
