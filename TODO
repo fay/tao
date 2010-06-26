@@ -1,3 +1,0 @@
-* add goo.gl url shortener service
-* write another service for user's comments storage
-  ** this means that user can comment anywhere only need a taobao url(because we can use the url as a key) 

@@ -1,2 +1,0 @@
-ln $GAE_HOME $PROJECT_DIR/.google_appengine
-Run the server.py
