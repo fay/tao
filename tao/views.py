@@ -3,6 +3,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from tao.models import *
 
 app = Flask(__name__)
+app.debug = True
 
 @app.route('/')
 def index():
@@ -11,6 +12,6 @@ def index():
     except:
         page = 1
     urls = Url.all().order('-when').fetch(20, 20 * (page - 1))
-    
+
     is_last = len(urls) < 20
     return render_template('index.html', urls=urls)
