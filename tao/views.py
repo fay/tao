@@ -58,8 +58,8 @@ def add_url():
     url_param = request.args.get('url')
     tags_param = request.args.get('tag')
     user = None#get_user()
-    
-    tag_list = tags_param.split(',')
+
+    tag_list = tags_param.split(' ')
     existing_url = Url.get_by_key_name(url_param)
     is_existing = existing_url and True or False
     tag_keys = is_existing and existing_url.tags
@@ -77,7 +77,7 @@ def add_url():
     else:
         existing_url.tags = tag_keys
     existing_url.put()
-        
+
     existing_user_url = UserUrl.all().filter('who =', user).filter('url =', existing_url).get()
     if existing_user_url:
         existing_user_url.tags = new_tag_keys
