@@ -1,1 +1,4 @@
 *.pyc
+tao/*.pyc
+jinja2/*.pyc
+werkzeug/*.pyc
