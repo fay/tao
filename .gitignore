@@ -1,4 +1,7 @@
 *.pyc
 tao/*.pyc
 jinja2/*.pyc
+jinja2/testsuite/*.pyc
 werkzeug/*.pyc
+werkzeug/contrib/*.pyc
+werkzeug/debug/*.pyc
