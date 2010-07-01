@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import hashlib
+from functools import wraps
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash, escape
 from tao.models import *
@@ -11,6 +12,16 @@ from google.appengine.ext.webapp.util import login_required
 app = Flask(__name__)
 app.debug = True
 app.secret_key = '<$\xf4B@\xaa\x16\xfcZ2\x92\xfd^w\x10\xee\x97\x9c\xdb\xf5\xd8e\xc6\\'
+
+def login_required(f):
+  @wraps(f)
+  def decorated_f(*args, **kwargs):
+    if 'username' in session:
+      if session['username'] is None:
+        session['back'] = request.url
+        return redirect(url_for('login'))
+    return f(*args, **kwargs)
+  return decorated_f
 
 @app.route('/')
 def index():
@@ -30,8 +41,8 @@ def view_by_tag(tag):
     urls = Url.all().filter('tags =', db.Key.from_path('Tag',tag)).order('-when').fetch(20, 20 * (page - 1))
     return render_template('index.html', urls=urls)
 
-@login_required
 @app.route('/add/url/1/')
+@login_required
 def add_url_1():
     url_param = request.args.get('url')
     if not url_param or not url_param.startswith('http://item.taobao.com'):
@@ -54,8 +65,8 @@ def add_url_1():
         tags = (user_url and user_url.tags and user_url.tags) or []
     return render_template('add.html', url=url, tags=tags)
 
-@login_required
 @app.route('/add/url/')
+@login_required
 def add_url():
     url_param = request.args.get('url')
     tags_param = request.args.get('tag')
@@ -102,6 +113,9 @@ def login():
 
 def log_the_user_in(name):
   session['username'] = name
+  if 'back' in session:
+    if session['back']:
+      return redirect(session['back'])
   return redirect('/')
 
 def valid_login(name, pwd):
