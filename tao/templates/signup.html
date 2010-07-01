@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="signup">
+    <form action="/signup" method="post" class="buttons">
+      <div class="error">{{error_email}}</div>
+      <div class="error">{{error_password}}</div>
+      <br/>
+      <label>用户名:</label>
+      <input type="text" name="username" />
+      <label>密码:</label>
+      <input type="password" name="password"/>
+      <strong><input type="submit" value="注册"/></strong>
+    </form>
+    <a href="/">算了，先看看再说 »</a>
+    <hr/>
+  </div>
+{% endblock %}

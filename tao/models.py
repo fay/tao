@@ -2,18 +2,17 @@
 from google.appengine.ext import db
 
 class User(db.Model):
-    user = db.UserProperty(required=True)
-    username = db.StringProperty(required=True)
+    name = db.StringProperty(required=True)
     first_name = db.StringProperty()
     last_name = db.StringProperty()
     email = db.EmailProperty()
-    password = db.StringProperty()
+    hashed_password = db.StringProperty()
     is_staff = db.BooleanProperty(default=False, required=True)
     is_active = db.BooleanProperty(default=True, required=True)
     is_superuser = db.BooleanProperty(default=False, required=True)
     last_login = db.DateTimeProperty(auto_now_add=True, required=True)
     date_joined = db.DateTimeProperty(auto_now_add=True, required=True)
-  
+
 class Tag(db.Model):
     #tag = db.StringProperty()
     num = db.IntegerProperty(default=0)
@@ -36,14 +35,14 @@ class UserUrl(db.Model):
     url = db.ReferenceProperty(Url)
     who = db.ReferenceProperty(User)
     tags = db.ListProperty(db.Key)
-    
+
 class Activation(db.Model):
     user = db.ReferenceProperty(User)
 
 class Watch(db.Model):
     watcher = db.ReferenceProperty(User, collection_name="watcher_set")
     watched = db.ReferenceProperty(verbose_name="watched", collection_name="watched_set", reference_class=User)
-    
+
     def create(self):
         if self.watched.key() == self.watcher.key():
             return False
@@ -53,4 +52,4 @@ class Watch(db.Model):
         else:
             self.put()
             return True
-        
+

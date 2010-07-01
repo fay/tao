@@ -1,11 +1,13 @@
 # -*- coding:utf-8 -*-
+import hashlib
 from flask import Flask, request, session, g, redirect, url_for, \
-     abort, render_template, flash
+     abort, render_template, flash, escape
 from tao.models import *
 from tao import utils
 import logging
 
 from google.appengine.ext.webapp.util import login_required
+
 app = Flask(__name__)
 app.debug = True
 app.secret_key = '<$\xf4B@\xaa\x16\xfcZ2\x92\xfd^w\x10\xee\x97\x9c\xdb\xf5\xd8e\xc6\\'
@@ -86,3 +88,56 @@ def add_url():
     existing_user_url.put()
     flash('Whoa,you made it!')
     return redirect('/')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  error = None
+  if request.method == 'POST':
+    if valid_login(request.form['username'],
+                   request.form['password']):
+      return log_the_user_in(request.form['username'])
+    else:
+      error = 'invalid password/username'
+  return render_template('login.html')
+
+def log_the_user_in(name):
+  session['username'] = name
+  return redirect('/')
+
+def valid_login(name, pwd):
+  user = User.all().filter('name =', name).get()
+  if user:
+    hashed = hashlib.sha1(pwd).hexdigest()
+    if hashed == user.hashed_password:
+      return user
+    else:
+      return False
+  return False
+
+@app.route('/logout')
+def logout():
+  if session['username']:
+    session['username'] = None
+    return redirect('/')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+  if request.method == 'POST':
+    if create_user(request.form['username'],
+                   request.form['password']):
+      return redirect('/')
+  return render_template('signup.html')
+
+def create_user(name, pwd):
+  q = User.all().filter('name =', name)
+  if q.count() == 0:
+    user = User(name=name)
+    user.hashed_password = hashlib.sha1(pwd).hexdigest()
+    user.put()
+    return user
+  else:
+    return False
+
+@app.route('/moo')
+def moo():
+  return render_template('moo.html')
