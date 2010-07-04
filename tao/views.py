@@ -7,7 +7,6 @@ from tao.models import *
 from tao import utils
 import logging
 
-from google.appengine.ext.webapp.util import login_required
 
 app = Flask(__name__)
 app.debug = True
@@ -16,11 +15,10 @@ app.secret_key = '<$\xf4B@\xaa\x16\xfcZ2\x92\xfd^w\x10\xee\x97\x9c\xdb\xf5\xd8e\
 def login_required(f):
     @wraps(f)
     def decorated_f(*args, **kwargs):
-        if 'username' in session:
-            if session['username'] is None:
-                session['back'] = request.url
-                return redirect(url_for('login'))
-        return f(*args, **kwargs)
+        if 'username' in session and session['username']:
+            return f(*args, **kwargs)
+        session['back'] = request.url
+        return redirect(url_for('login'))
     return decorated_f
 
 @app.route('/')

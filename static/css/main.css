@@ -167,7 +167,7 @@ a.tag#yellow {
 }
 
 .container .list .realtime li {
-    padding-top: 20px;
+	padding-top: 20px;
 }
 
 .container .list .menu {
@@ -207,7 +207,7 @@ a.tag#yellow {
 }
 
 .container .list .menu .add {
-	background: url(../images/plus_12x12.png) no-repeat scroll 1px 3px
+	background: url(../images/plus_12x12.png) no-repeat scroll 1px 2px
 		transparent;
 	padding-left: 16px;
 }

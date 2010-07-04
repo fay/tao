@@ -1,4 +1,4 @@
-.login {
+.login,.signup {
 	margin-left: auto;
 	margin-right: auto;
 	width: 440px;
@@ -9,7 +9,6 @@
 .error {
 	color: #F4376C;
 }
-
 
 a:hover {
 	color: #F4376C;
