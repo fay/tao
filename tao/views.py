@@ -14,14 +14,14 @@ app.debug = True
 app.secret_key = '<$\xf4B@\xaa\x16\xfcZ2\x92\xfd^w\x10\xee\x97\x9c\xdb\xf5\xd8e\xc6\\'
 
 def login_required(f):
-  @wraps(f)
-  def decorated_f(*args, **kwargs):
-    if 'username' in session:
-      if session['username'] is None:
-        session['back'] = request.url
-        return redirect(url_for('login'))
-    return f(*args, **kwargs)
-  return decorated_f
+    @wraps(f)
+    def decorated_f(*args, **kwargs):
+        if 'username' in session:
+            if session['username'] is None:
+                session['back'] = request.url
+                return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_f
 
 @app.route('/')
 def index():
@@ -48,7 +48,7 @@ def add_url_1():
     if not url_param or not url_param.startswith('http://item.taobao.com'):
         return render_template('error.html', message='必须是淘宝的链接哦 ;-)')
 
-    user = None #= get_user()
+    user = utils.get_current_user(session)
     url = Url.get_by_key_name(url_param)
     if url and not url.title:
         title = utils.fetch_title(url_param)
@@ -70,8 +70,7 @@ def add_url_1():
 def add_url():
     url_param = request.args.get('url')
     tags_param = request.args.get('tag')
-    user = None#get_user()
-
+    user = utils.get_current_user(session)
     tag_list = tags_param.split(' ')
     existing_url = Url.get_by_key_name(url_param)
     is_existing = existing_url and True or False
@@ -136,22 +135,22 @@ def logout():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-  if request.method == 'POST':
-    if create_user(request.form['username'],
-                   request.form['password']):
-      return redirect('/')
-  return render_template('signup.html')
+    if request.method == 'POST':
+        if create_user(request.form['username'],
+                       request.form['password']):
+            return redirect('/')
+    return render_template('signup.html')
 
 def create_user(name, pwd):
-  q = User.all().filter('name =', name)
-  if q.count() == 0:
-    user = User(name=name)
-    user.hashed_password = hashlib.sha1(pwd).hexdigest()
-    user.put()
-    return user
-  else:
-    return False
+    q = User.all().filter('name =', name)
+    if q.count() == 0:
+        user = User(name=name)
+        user.hashed_password = hashlib.sha1(pwd).hexdigest()
+        user.put()
+        return user
+    else:
+        return False
 
 @app.route('/moo')
 def moo():
-  return render_template('moo.html')
+    return render_template('moo.html')

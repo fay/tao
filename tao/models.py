@@ -12,6 +12,12 @@ class User(db.Model):
     is_superuser = db.BooleanProperty(default=False, required=True)
     last_login = db.DateTimeProperty(auto_now_add=True, required=True)
     date_joined = db.DateTimeProperty(auto_now_add=True, required=True)
+    
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
 
 class Tag(db.Model):
     #tag = db.StringProperty()
@@ -39,17 +45,4 @@ class UserUrl(db.Model):
 class Activation(db.Model):
     user = db.ReferenceProperty(User)
 
-class Watch(db.Model):
-    watcher = db.ReferenceProperty(User, collection_name="watcher_set")
-    watched = db.ReferenceProperty(verbose_name="watched", collection_name="watched_set", reference_class=User)
-
-    def create(self):
-        if self.watched.key() == self.watcher.key():
-            return False
-        existing_watch = Watch.all().filter('watcher = ', self.watcher).filter('watched = ', self.watched).get()
-        if existing_watch:
-            return False
-        else:
-            self.put()
-            return True
 

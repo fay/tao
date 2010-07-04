@@ -13,7 +13,7 @@
 		<link href="/static/css/main.css" rel="stylesheet" type="text/css" media="screen" />	
 		<link href="/static/css/button.css" rel="stylesheet" type="text/css" media="screen" />	
 		<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/feeds/latest/">
-    <script src="/static/js/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/static/js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 		{% block css %}{% endblock %}
 	</head>
 	<body class="container">	
@@ -22,17 +22,20 @@
 			<li><a href="/"><strong>Home</strong></a></li>
 			<li><a href="/buzz">Buzz</a></li>
 	        <li><a href="/blog">Blog</a></li>
+			{%if session.username%}
+				<li>Welcome,{{session.username}} <a href="/logout">Logout</a></li>
+			{%else%}
+				<li><a href="/login">Sign In</a> / <a href="/signup">Sign Up</a></li>
+			{%endif%}
 			</ul>
 		</div>
 		<div id="content" class="content">
 			<div class="page">
 				{% block content %}{% endblock %}
 			</div>
-			{% block extra %}{% endblock %}
 		</div>
 		<div class="footer">
-			<p>All copyright &copy; reserved.2010 Mind Games Team.
-			</p>
+			<p>&copy;2010 All copyrights reserved - Mind Games Team.</p>
 		</div>
 	</body>
 </html>

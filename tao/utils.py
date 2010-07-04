@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from google.appengine.api import urlfetch
+from tao.models import User
 import urllib
 import logging,re
-
-from google.appengine.api.labs import taskqueue
 PAGE_SIZE = 10
+
+def get_current_user(session):
+    current_username = session['username']
+    return User.all().filter('name =', current_username).get()
 
 def createPaginator(page,is_last):
     paginator = ''
@@ -45,21 +48,3 @@ def fetch_title(url):
                 logging.error(title[0])
                 return title[0].decode('GBK')
     return ''
-
-def publish(host, topic):
-    DEBUG = is_debug(host)
-    publish_form = {
-      "hub.mode": "publish",
-      "hub.url":topic
-    }
-    publish_data = urllib.urlencode(publish_form)
-    publish_url = (DEBUG and 'http://localhost:8080/publish') or 'http://dragon-sea.appspot.com/publish'
-    result = urlfetch.fetch(url=publish_url,
-                            payload=publish_data,
-                            method=urlfetch.POST,
-                            headers={'Content-Type': 'application/x-www-form-urlencoded'})
-
-    if result.status_code != 204 :
-        logging.error('publish topic:' + topic + 'error,details:' + result.content)
-        return False
-    return True

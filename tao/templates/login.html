@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{%block css%}
+<link href="/static/css/login.css" rel="stylesheet" type="text/css" media="screen" />	
+{%endblock%}
 {% block content %}
 	<div class="login">	
 		<form action="/login" method="post" class="buttons">
@@ -8,7 +11,6 @@
 			<label>密码:</label>
 			<input type="password" name="password" />
 			<strong><input type="submit" value="登陆" /></strong>	
-			(您也可以使用<a href="/login?by=google">Google账号登陆</a>	)
 		</form>
 		<a href="/signup">注册新账号?</a>
 		<hr/>
