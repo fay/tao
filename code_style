@@ -1,3 +1,5 @@
 1. python's intendation should be four spaces.
-Since we use app engine, let's follow her original style, 2 spaces?
+> Since we use app engine, let's follow her original style, 2 spaces?
+>> see the section `Code lay-out' @ http://www.python.org/dev/peps/pep-0008/
+   
 2. url should not trailing with '/'
