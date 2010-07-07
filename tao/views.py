@@ -9,7 +9,6 @@ import logging
 
 
 app = Flask(__name__)
-app.debug = True
 app.secret_key = '<$\xf4B@\xaa\x16\xfcZ2\x92\xfd^w\x10\xee\x97\x9c\xdb\xf5\xd8e\xc6\\'
 
 def login_required(f):
@@ -152,3 +151,7 @@ def create_user(name, pwd):
 @app.route('/moo')
 def moo():
     return render_template('moo.html')
+
+@app.route('/test')
+def test(s):
+    return "hello"
