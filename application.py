@@ -4,7 +4,7 @@ from flask import Flask
 
 def main():
     app.debug = True
-    app.run()
+    run_wsgi_app(app)
 
 if __name__ == '__main__':
     main()
