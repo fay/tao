@@ -29,6 +29,19 @@ def index():
     urls = Url.all().order('-when').fetch(20, 20 * (page - 1))
     return render_template('index.html', urls=urls)
 
+@app.route('/like/<key>')
+def like(key):
+    who = utils.get_current_user(session)
+    url = Url.get(key)
+    if url:
+        if request.args.get('unlike') == 'true':
+            like = Like.all().filter(url=url,who=who).get()
+            like.delete()
+        else:
+            like = Like(url=url,who=who)
+            like.put()
+    return ''
+
 @app.route('/tag/<tag>/')
 def view_by_tag(tag):
     try:

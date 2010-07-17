@@ -45,4 +45,7 @@ class UserUrl(db.Model):
 class Activation(db.Model):
     user = db.ReferenceProperty(User)
 
+class Like(db.Model):
+    who = db.ReferenceProperty(User)
+    url = db.ReferenceProperty(Url)
 

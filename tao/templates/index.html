@@ -42,6 +42,18 @@
 	});
 });
 
+  function like(url){
+    $('li').toggle(
+
+            $.ajax({ url: "/like/"+url, success: function(){
+             $('#url_'+url).text('不喜欢'); 
+             }}),
+
+            $.ajax({ url: "/like/"+url+"?unlike=true", success: function(){
+             $('#url_'+url).text('喜欢'); 
+             }})
+            );
+  }
 </script>	
 {% endblock %}
 {% block content %}
@@ -63,21 +75,28 @@
 	    	<ol>
 	       	{%for url in urls%}
         		<li>
-        		   <a href="{{url.key().name()}}" target="blank"><strong>{{url.title|safe}}</strong></a> <span class="date">{{url.when}}</span>
 
-        		   <p id="" class="item_link">{{url.key().name()}}</p>
-				   {%for user_url in url.userurl_set%}
-        		      {{user_url.who}} 
-        		   {%endfor%}
-        		   <div>
+                <div class="info">
+                    <div class="like">
+                        {{url.like_set.count()}}
+                        <br>
+                        <a id="url_{{url.key()}}" href="#url_{{url.key()}}" onmousedown="like('{{url.key()}}')">喜欢</a>
+                    </div>
+                </div>
+                <div class="url">
+        		    <a href="{{url.key().name()}}" target="blank"><strong>{{url.title|safe}}</strong></a> <span class="date">{{url.when}}</span>
+
+        		    <p id="" class="item_link">{{url.key().name()}}</p>
+				    {%for user_url in url.userurl_set%}
+        		       {{user_url.who}} 
+        		    {%endfor%}
         		       <div class="tags">
         		          	{%for tag in url.tags%}
         		          	    <a class="tag" id="yellow" href="/tag/{{tag.name()}}">{{tag.name()}}</a>
         		          	{%endfor%}
         		       </div>
-        		       <div>
-        		       </div>
-        		   </div>
+                </div>
+                <div class="none"></div>
         		</li>
     		{%endfor%}
     		</ol>

@@ -82,8 +82,9 @@ ul li {
 ol li {
 	padding: 0 0 0.2em 20px;
 	list-style-type: none;
-	background: url(../images/i-leaf.png) no-repeat scroll 1px 3px
-		transparent;
+	/*background: url(../images/i-leaf.png) no-repeat scroll 1px 3px
+		transparent;*/
+
 }
 
 .container {
@@ -146,16 +147,24 @@ a.tag#yellow {
 }
 
 .container .list,.container .addForm {
-	width: 600px;
+	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: left;
 }
 
 .container .list .addForm {
 	display: none;
 }
 
+.container .list .urls .info{
+    float:left;
+    width:20%;
+    height:100px;
+}
+.contaner .list .urls .url{
+    float:left;
+    width:80%;
+}
 .container .list .realtime {
 	-moz-border-radius: 5px 5px 5px 5px;
 	background-color: #E1F1FA;
