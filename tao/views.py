@@ -26,10 +26,11 @@ def index():
         page = int(request.args.get('page'))
     except:
         page = 1
-    urls = Url.all().order('-when').fetch(20, 20 * (page - 1))
+    urls = Url.all().order('-when').fetch(10, 10 * (page - 1))
+    size = len(urls)
     return render_template('index.html', urls=urls)
 
-@app.route('/tag/<tag>/')
+@app.route('/tag/<tag>')
 def view_by_tag(tag):
     try:
         page = int(request.args.get('page'))
