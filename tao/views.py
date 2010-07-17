@@ -30,7 +30,20 @@ def index():
     size = len(urls)
     return render_template('index.html', urls=urls)
 
-@app.route('/tag/<tag>')
+@app.route('/like/<key>')
+def like(key):
+    who = utils.get_current_user(session)
+    url = Url.get(key)
+    if url:
+        if request.args.get('unlike') == 'true':
+            like = Like.all().filter('url =',url).filter('who =' ,who).get()
+            like.delete()
+        else:
+            like = Like(url=url,who=who)
+            like.put()
+    return ''
+
+@app.route('/tag/<tag>/')
 def view_by_tag(tag):
     try:
         page = int(request.args.get('page'))
