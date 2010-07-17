@@ -31,6 +31,7 @@ def index():
     return render_template('index.html', urls=urls)
 
 @app.route('/like/<key>')
+@login_required
 def like(key):
     who = utils.get_current_user(session)
     url = Url.get(key)

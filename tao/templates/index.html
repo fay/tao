@@ -43,6 +43,12 @@
 });
 
   function like(url){
+
+            if('{{session.username}}' == 'None'){
+                alert('先登录吧!'); 
+                window.location.href = "/login";
+                return ;
+            }
             var isLike =  $('#url_'+url).text() == '喜欢' ? true : false;
             if(isLike){
                 $.ajax({ url: "/like/"+url, success: function(){
@@ -78,8 +84,8 @@
 
                 <div class="info">
                     <div class="like">
-                        <strong class="num">{{url.like_set.count()}}</strong> 
-                        <a id="url_{{url.key()}}" href="#url_{{url.key()}}" onmousedown="like('{{url.key()}}')">喜欢</a>
+                        <strong class="num">{{url.like_set.count()}}</strong> <br>
+                        <a id="url_{{url.key()}}" href="#url_{{url.key()}}" onmousedown="like('{{url.key()}}');">喜欢</a>
                     </div>
                 </div>
                 <div class="url">
