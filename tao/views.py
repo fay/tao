@@ -6,6 +6,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from tao.models import *
 from tao import utils
 import logging
+from urllib import unquote
 
 
 app = Flask(__name__)
@@ -36,20 +37,34 @@ def like(key):
     who = utils.get_current_user(session)
     url = Url.get(key)
     if url:
+        like = Like.all().filter('url =',url).filter('who =' ,who).get()
         if request.args.get('unlike') == 'true':
-            like = Like.all().filter('url =',url).filter('who =' ,who).get()
             like.delete()
-        else:
+        elif not like:
             like = Like(url=url,who=who)
             like.put()
     return ''
 
-@app.route('/tag/<tag>/')
+@app.route('/view/<key>')
+def view(key):
+    url = Url.get(key)
+    who = utils.get_current_user(session)
+    is_like = False
+    if url and who:
+        like = Like.all().filter('url =',url).filter('who =' ,who).get()
+        if like:
+            is_like = True
+    return render_template('viewer.html',url=url,is_like=is_like)
+
+
+@app.route('/tag/<tag>')
 def view_by_tag(tag):
     try:
         page = int(request.args.get('page'))
     except:
         page = 1
+    tag = unquote(tag)
+    logging.error(tag)
     urls = Url.all().filter('tags =', db.Key.from_path('Tag',tag)).order('-when').fetch(20, 20 * (page - 1))
     return render_template('index.html', urls=urls)
 
@@ -163,10 +178,9 @@ def create_user(name, pwd):
     else:
         return False
 
+
+
 @app.route('/moo')
 def moo():
     return render_template('moo.html')
 
-@app.route('/test')
-def test(s):
-    return "hello"

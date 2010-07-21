@@ -2,12 +2,21 @@
 from google.appengine.api import urlfetch
 from tao.models import User
 import urllib
+from jinja2 import environmentfilter, Markup, escape
 import logging,re
 PAGE_SIZE = 10
 
+
+@environmentfilter
+def urlencode(env, value):
+    return urllib.quote(value)
+
 def get_current_user(session):
-    current_username = session['username']
-    return User.all().filter('name =', current_username).get()
+    if session.has_key('username'):
+        current_username = session['username']
+        return User.all().filter('name =', current_username).get()
+    else:
+        return None
 
 def createPaginator(page,is_last):
     paginator = ''

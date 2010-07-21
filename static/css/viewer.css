@@ -1,0 +1,122 @@
+html {
+	height: 100%;
+	overflow: hidden;
+}
+
+a.button:hover,a.button:active,input.button:hover,input.button:active {
+	border-color: #116746;
+	background-color: #55B166;
+	background-position: 0 -50px;
+	color: #FFF;
+	text-shadow: 0 1px 0 #393;
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #000;
+}
+
+a:visited {
+	color: #534B38;
+}
+
+a:hover,a:active {
+	color: #39C;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-color: #FFF;
+	color: #534B38;
+	font: normal 1em/ 1.4 微软雅黑, 'Helvetica Neue', Arial, Helvetica,
+		sans-serif;
+}
+
+ul {
+	font-size: 0.9em;
+	margin: .2em 0 1em 2.1em;
+}
+
+ul li,ol li {
+	margin-bottom: .75em;
+}
+
+ul li {
+	margin: 0 10px;
+	display: inline;
+	vertical-align: top;
+}
+
+.nav {
+	padding-top: 10px;
+	width: 100%;
+	min-width: 770px;
+	_width: 770px;
+	height: 6%;
+	background: #fff;
+	border-bottom: 4px solid #BCE27F;
+	z-index: 1;
+	width: 100%;
+}
+
+.home {
+	padding: 3px 0 0.3em 26px;
+	background: url(../images/home_24x24.png) no-repeat scroll 0px 0px
+		transparent;
+}
+
+.like {
+	color: #999;
+}
+
+.like_count {
+	background: #7CBA0F;
+	color: white;
+	-moz-border-radius: 2px 2px 2px 2px;
+	font-weight: bold;
+	padding: 0 0.25em;
+	text-decoration: none;
+	font-size: 1.3em;
+}
+
+.like:hover strong{
+	color: #F4376C;
+}
+
+.menu {
+	padding-left: 50px;
+	float: left;
+}
+
+.control {
+	padding-right: 250px;
+	float: right;
+}
+
+.control b.like_note {
+	padding-left: 5px;
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
+.none {
+	clear: both;
+}
+
+#frame {
+	width: 100%;
+	height: 89%;
+	background: #fff
+}
+
+#frame iframe {
+	height: 100%;
+	width: 100%;
+	border: none
+}
