@@ -3,18 +3,6 @@ html {
 	overflow: hidden;
 }
 
-a.button:hover,a.button:active,input.button:hover,input.button:active {
-	border-color: #116746;
-	background-color: #55B166;
-	background-position: 0 -50px;
-	color: #FFF;
-	text-shadow: 0 1px 0 #393;
-	cursor: pointer;
-}
-
-a {
-	text-decoration: none;
-}
 
 a:link {
 	color: #000;
@@ -43,26 +31,18 @@ ul {
 	margin: .2em 0 1em 2.1em;
 }
 
-ul li,ol li {
-	margin-bottom: .75em;
-}
-
 ul li {
 	margin: 0 10px;
 	display: inline;
-	vertical-align: top;
 }
 
 .nav {
 	padding-top: 10px;
 	width: 100%;
-	min-width: 770px;
-	_width: 770px;
 	height: 6%;
 	background: #fff;
 	border-bottom: 4px solid #BCE27F;
 	z-index: 1;
-	width: 100%;
 }
 
 .home {
@@ -85,8 +65,13 @@ ul li {
 	font-size: 1.3em;
 }
 
-.like:hover strong{
+.like strong {
+	font-size: 1.2em;
+}
+
+.like:hover strong {
 	color: #F4376C;
+	font-size: 1.2em;
 }
 
 .menu {
@@ -107,6 +92,12 @@ ul li {
 
 .none {
 	clear: both;
+}
+
+.control .favorite {
+	padding: 0px 0 0em 16px;
+	background: url(../images/plus_12x12.png) no-repeat scroll 0px 3px
+		transparent;
 }
 
 #frame {
