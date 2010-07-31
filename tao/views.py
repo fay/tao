@@ -164,15 +164,18 @@ def logout():
 def signup():
     if request.method == 'POST':
         if create_user(request.form['username'],
-                       request.form['password']):
+                       request.form['password'],
+                       request.form['email']):
+            session['username'] = request.form['username']
             return redirect('/')
     return render_template('signup.html')
 
-def create_user(name, pwd):
+def create_user(name, pwd, email):
     q = User.all().filter('name =', name)
     if q.count() == 0:
         user = User(name=name)
         user.hashed_password = hashlib.sha1(pwd).hexdigest()
+        user.email = email
         user.put()
         return user
     else:
