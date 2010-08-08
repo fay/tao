@@ -27,7 +27,7 @@ def index():
         page = int(request.args.get('page'))
     except:
         page = 1
-    urls = Url.all().order('-when').fetch(10, 10 * (page - 1))
+    urls = Beike.all().order('-when').fetch(10, 10 * (page - 1))
     size = len(urls)
     return render_template('index.html', urls=urls)
 
@@ -47,7 +47,7 @@ def like(key):
 
 @app.route('/view/<key>')
 def view(key):
-    url = Url.get(key)
+    url = Beike.get(key)
     who = utils.get_current_user(session)
     is_like = False
     if url and who:
@@ -65,41 +65,37 @@ def view_by_tag(tag):
         page = 1
     tag = unquote(tag)
     logging.error(tag)
-    urls = Url.all().filter('tags =', db.Key.from_path('Tag',tag)).order('-when').fetch(20, 20 * (page - 1))
+    urls = Beike.all().filter('tags =', db.Key.from_path('Tag',tag)).order('-when').fetch(20, 20 * (page - 1))
     return render_template('index.html', urls=urls)
 
-@app.route('/add/url/1/')
+@app.route('/add')
 @login_required
-def add_url_1():
-    url_param = request.args.get('url')
-    if not url_param or not url_param.startswith('http://item.taobao.com'):
-        return render_template('error.html', message='必须是淘宝的链接哦 ;-)')
+def add():
+    url = request.args.get('url')
+    if not url or not url.startswith('http://item.taobao.com'):
+        return render_template('error.html', message='必须是淘宝的链接哦 ;-)'.decode('utf-8'))
 
     user = utils.get_current_user(session)
-    url = Url.get_by_key_name(url_param)
-    if url and not url.title:
-        title = utils.fetch_title(url_param)
-        url.title = title
-        url.put()
+    beike = Beike.get_by_key_name(url)
 
-    tags = []
-    if not url:
-        title = utils.fetch_title(url_param)
-        url = Url(key_name=url_param, tags=[], title=title)
-        url.put()
-    else:
-        user_url = UserUrl.all().filter('who =', user).filter('url =', url).get()
-        tags = (user_url and user_url.tags and user_url.tags) or []
-    return render_template('add.html', url=url, tags=tags)
+    if not beike:
+        title = utils.fetch_title(url)
+        beike = Beike(key_name=url, tags=[], title=title)
+        beike = Beike(key_name=url, title=title)
+        beike.put()
+
+    user_url = UserUrl.all().filter('who =', user).filter('url =', url).get()
+    tags = (user_url and user_url.tags and user_url.tags) or []
+    return render_template('add.html', url=beike, tags=tags)
 
 @app.route('/add/url/')
 @login_required
 def add_url():
-    url_param = request.args.get('url')
+    url = request.args.get('url')
     tags_param = request.args.get('tag')
     user = utils.get_current_user(session)
     tag_list = tags_param.split(' ')
-    existing_url = Url.get_by_key_name(url_param)
+    existing_url = Beike.get_by_key_name(url)
     is_existing = existing_url and True or False
     tag_keys = is_existing and existing_url.tags
     new_tag_keys = []
@@ -112,7 +108,7 @@ def add_url():
             new_tag_keys.append(tag.key())
 
     if not is_existing:
-        existing_url = Url(key_name=url_param, tags=new_tag_keys)
+        existing_url = Beike(key_name=url, tags=new_tag_keys)
     else:
         existing_url.tags = tag_keys
     existing_url.put()

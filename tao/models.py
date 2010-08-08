@@ -12,7 +12,7 @@ class User(db.Model):
     is_superuser = db.BooleanProperty(default=False, required=True)
     last_login = db.DateTimeProperty(auto_now_add=True, required=True)
     date_joined = db.DateTimeProperty(auto_now_add=True, required=True)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -30,15 +30,15 @@ class Tag(db.Model):
             tag.put()
         return tag
 
-class Url(db.Model):
-    #url = db.StringProperty()
+class Beike(db.Model):
+    url = db.StringProperty()
     when = db.DateTimeProperty(auto_now_add=True)
     tags = db.ListProperty(db.Key)
     title = db.StringProperty()
 
 
 class UserUrl(db.Model):
-    url = db.ReferenceProperty(Url)
+    url = db.ReferenceProperty(Beike)
     who = db.ReferenceProperty(User)
     tags = db.ListProperty(db.Key)
 
@@ -47,5 +47,5 @@ class Activation(db.Model):
 
 class Like(db.Model):
     who = db.ReferenceProperty(User)
-    url = db.ReferenceProperty(Url)
+    url = db.ReferenceProperty(Beike)
 
