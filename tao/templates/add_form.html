@@ -1,8 +1,9 @@
-			<div class="addForm">
-		        <form action="/add/url/1/" method="get">
-		                <label>URL:</label><br>
-		                <input id="url_form" class="url" type="text" name="url"/><br><br>
-		                <input class="button" type="submit" onclick="if(!validate_url(document.getElementById('url_form').value)){return false;}" value="Submit"/>
-		            </ul>
-		        </form>
-		    </div>
+<div id="add" class="form">
+  <form action="/add" method="put">
+    <p>
+      <label>链接：</label>
+      <input class="url" type="txt" name="url">
+    </p>
+    <input class="button" type="submit" value="加">
+  </form>
+</div>

@@ -1,20 +1,29 @@
 {% extends "base.html" %}
-{%block css%}
-<link href="/static/css/login.css" rel="stylesheet" type="text/css" media="screen" />	
-{%endblock%}
 {% block content %}
-  <div class="signup">
-    <form action="/signup" method="post" class="buttons">
-      <div class="error">{{error_email}}</div>
-      <div class="error">{{error_password}}</div>
-      <br/>
-      <label>用户名:</label>
-      <input type="text" name="username" />
-      <label>密码:</label>
-      <input type="password" name="password"/>
-      <strong><input type="submit" value="注册"/></strong>
-    </form>
-    <a href="/">算了，先看看再说 »</a>
-    <hr/>
+  <div class="box">  
+    <div class="cell">
+      <span class="fade">注册</span>
+    </div>
+    <div class="inner">
+      <form class="user" action="/signup" method="post">
+        <p>
+          <label>用户名： </label>
+          <input type="text" name="username">
+          <span class="hint"></span>
+        </p>
+        <p>
+          <label>密码： </label>
+          <input type="password" name="password">
+          <span class="hint"></span>
+        </p>
+        <p>
+          <label>邮箱： </label>
+          <input type="text" name="email">
+          <span class="hint"></span>
+        </p>
+        <input class="go" type="submit" value="注册">
+        <a href="/">算了，先看看再说 »</a>
+      </form>
+    </div>
   </div>
 {% endblock %}

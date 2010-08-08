@@ -1,41 +1,83 @@
 <!doctype html>
-<html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>{% block title %}淘贝壳{% endblock %}</title>
-		<meta name="ROBOTS" content="ALL" />
-		<meta http-equiv="imagetoolbar" content="no" />
-		<meta name="MSSmartTagsPreventParsing" content="true" />
-		<meta name="Copyright" content="This site's design and contents Copyright (c) 2010 Mind Games Team" />
-		<meta name="keywords" content="淘宝,taobao,推荐,链接" />
-		<meta name="description" content="淘宝,taobao,推荐,链接" />
-		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-		<link href="/static/css/main.css" rel="stylesheet" type="text/css" media="screen" />	
-		<link href="/static/css/button.css" rel="stylesheet" type="text/css" media="screen" />	
-		<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/feeds/latest/">
-		<script src="/static/js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-		{% block css %}{% endblock %}
-	</head>
-	<body class="container">	
-		<div class="header">
-			<ul>
-			<li><a href="/"><strong>Home</strong></a></li>
-			<li><a href="/buzz">Buzz</a></li>
-	        <li><a href="/blog">Blog</a></li>
-			{%if session.username%}
-				<li>Welcome,{{session.username}} <a href="/logout">Logout</a></li>
-			{%else%}
-				<li><a href="/login">Sign In</a> / <a href="/signup">Sign Up</a></li>
-			{%endif%}
-			</ul>
-		</div>
-		<div id="content" class="content">
-			<div class="page">
-				{% block content %}{% endblock %}
-			</div>
-		</div>
-		<div class="footer">
-			<p>&copy;2010 All copyrights reserved - Mind Games Team.</p>
-		</div>
-	</body>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="True" name="HandHeldFriendly">
+    <title>{% block title %}捡贝壳{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/style.css">
+    <link rel="shotcut icon" href="/favicon.ico">
+    <link rel="alternate" type="application/atom+xml" href="/index.xml">
+    <meta name="google-site-verification" content="">
+  </head>
+  <body>
+    <div id="top">
+      <div id="top_main">
+        <div id="logo">
+          <a href="/" class="white">捡贝壳</a>
+        </div>
+        <div id="nav">
+          <ul>
+            {% if session.username %}
+              <li>
+                <a href="/{{ session.username }}" class="white">{{ session.username }}</a>
+              </li>
+              <li>
+                <a href="/logout" class="white">登出</a>
+              </li>
+            {% else %}
+              <li>
+                <a href="/login" class="white">登入</a>
+              </li>
+              <li>
+                <a href="/signup" class="white">注册</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+        <!-- div id="search">
+          <form>
+            <input type="text" maxlength="40" class="search" name="q" id="q">
+            <input type="submit" class="super normal button" value="搜">
+          </form>
+        </div -->
+      </div>
+    </div>
+    <div id="side">
+      {% if session.username %}
+        <div class="box">
+          <div class="inner">
+            <div class="avatar">
+              <a href="/{{ session.username }}">
+                <img src="/static/images/missing.jpg" border="0">
+              </a>
+            </div>
+            <div class="meta">
+              <span class="bigger">
+                <a href="/{{ session.username }}">{{ session.username }}</a>
+              </span>
+              <span class="fade">ただいま</span>
+              <div class="sep5"></div>
+              <div class="stats">
+                收藏<span class="num"> 3</span>
+                买了<span class="num"> 14</span>
+                喜欢<span class="num"> 16</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div id="wrap">
+      <div id="main">
+        <div id="content">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+      <div id="foot">
+        <div id="foot_main">
+          <strong><a href="/about">关于</a></strong>  |  <strong><a href="/faq">问题</a></strong>  |  <strong><a href="/ad">广告</a></strong>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,93 +1,17 @@
 {% extends "base.html" %}
-{% block css %}
-<link rel="stylesheet" href="/static/notify/jquery.notifyBar.css" type="text/css" media="screen"  />
-<link href="/static/slider/css/screen.css" rel="stylesheet" type="text/css" media="screen" />    
-<script src="/static/notify/jquery.notifyBar.js" type="text/javascript" charset="utf-8"></script> 
-<script type="text/javascript" src="/static/slider/js/easySlider1.7.js"></script>
-<script type="text/javascript">
-
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-    $(function () {
-      $.notifyBar({
-       html: "{{message}}",
-       delay: 2000,
-       cls:'success',
-       animationSpeed: "normal"
-      });  
-    });
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-
-  function validate_url(url) {
-   if(url && url.indexOf('http://item.taobao.com') === 0){
-      return true;
-   }
-  $.notifyBar({
-    html: "必须是淘宝的链接哦 ;-)",
-    delay: 2000,
-    cls:'error',
-    animationSpeed: "normal"
-  });
-  return false;
-  }
-  
-  $(document).ready(function(){    
-    $("#slider").easySlider({
-        auto: true,
-        continuous: true,
-        numeric: true
-    });
-});
-
-
-</script>	
-{% endblock %}
 {% block content %}
-	<div class="list">
-	    <div class="realtime" id="slider">
-	        <ul>				
-				<li>
-					<h1>为您推荐最好的淘宝宝贝</h1>
-					<p>利用集体智慧将最好的淘宝宝贝呈现给您。</p>
-			    </li>
-				
-			</ul>
-	    </div>
-	    <div class="menu">
-	        <a class="add" href="#" onclick="$('.addForm').toggle();return false;">Add</a>
-	        {%include 'add_form.html'%}
-	    </div>
-	    <div class="urls">
-	    	<ol>
-	       	{%for url in urls%}
-        		<li>
-
-                <div class="info">
-                    <div class="like">
-                        <strong class="num">{{url.like_set.count()}}</strong> <br>
-                        喜欢
-                    </div>
-                </div>
-                <div class="url">
-        		    <a href="/view/{{url.key()}}" target="blank"><strong>{{url.title|safe}}</strong></a> <span class="date">{{url.when}}</span>
-
-        		    <p id="" class="item_link">{{url.key().name()}}</p>
-				    {%for user_url in url.userurl_set%}
-        		       {{user_url.who}} 
-        		    {%endfor%}
-        		       <div class="tags">
-        		          	{%for tag in url.tags%}
-        		          	    <a class="tag" id="yellow" href="/tag/{{tag.name()}}">{{tag.name()}}</a>
-        		          	{%endfor%}
-        		       </div>
-                </div>
-                <div class="none"></div>
-        		</li>
-    		{%endfor%}
-    		</ol>
-	    </div>
-    </div>
+  <div class="box">
+    {% include "add_form.html" %}
+    {% for u in urls %}
+      <div class="cell">
+        <div class="meta"></div>
+        <div class="entry">
+          <p class="title">
+            {{ u.title }}
+          </p>
+        </div>
+        <div class="thumb"></div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
