@@ -27,9 +27,9 @@ def index():
         page = int(request.args.get('page'))
     except:
         page = 1
-    urls = Beike.all().order('-when').fetch(10, 10 * (page - 1))
-    size = len(urls)
-    return render_template('index.html', urls=urls)
+    bs = Beike.all().order('-when').fetch(100, 10 * (page - 1))
+    size = len(bs)
+    return render_template('index.html', bs=bs)
 
 @app.route('/like/<key>')
 @login_required

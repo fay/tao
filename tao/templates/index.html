@@ -1,16 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="box">
     {% include "add_form.html" %}
-    {% for u in urls %}
+  <div class="box">
+    {% for b in bs %}
       <div class="cell">
-        <div class="meta"></div>
-        <div class="entry">
-          <p class="title">
-            {{ u.title }}
-          </p>
+        <div class="like col">
+          <div class="likes bar col">
+            <div>23</div>
+            <div>喜欢</div>
+          </div>
+          <div class="bar col">
+            <div>14</div>
+            <div>拥有</div>
+          </div>
+          <div class="bar col">
+            <div>16</div>
+            <div>收藏</div>
+          </div>
         </div>
-        <div class="thumb"></div>
+        <div class="entry col">
+          <a href="{{ b.url }}" lass="bigger">
+            {{ b.title }}
+          </a>
+          <div class="flat"></div>
+        </div>
+        <div class="thumb col">
+          <a href="/n2n3">
+            <img src="/static/images/missing.jpg">
+          </a>
+          <div>n2n3</div>
+        </div>
       </div>
     {% endfor %}
   </div>

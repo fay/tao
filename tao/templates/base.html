@@ -10,57 +10,38 @@
     <meta name="google-site-verification" content="">
   </head>
   <body>
-    <div id="top">
-      <div id="top_main">
-        <div id="logo">
-          <a href="/" class="white">捡贝壳</a>
-        </div>
-        <div id="nav">
-          <ul>
-            {% if session.username %}
-              <li>
-                <a href="/{{ session.username }}" class="white">{{ session.username }}</a>
-              </li>
-              <li>
-                <a href="/logout" class="white">登出</a>
-              </li>
-            {% else %}
-              <li>
-                <a href="/login" class="white">登入</a>
-              </li>
-              <li>
-                <a href="/signup" class="white">注册</a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
-        <!-- div id="search">
-          <form>
-            <input type="text" maxlength="40" class="search" name="q" id="q">
-            <input type="submit" class="super normal button" value="搜">
-          </form>
-        </div -->
-      </div>
-    </div>
     <div id="side">
+      <div class="box">
+        <div id="logo" onclick="location.href='/'"></div>
+        <div class="inner">V2EX 是一个关于分享和探索的地方</div>
+      </div>
       {% if session.username %}
         <div class="box">
           <div class="inner">
-            <div class="avatar">
+            <div class="thumb col">
               <a href="/{{ session.username }}">
                 <img src="/static/images/missing.jpg" border="0">
               </a>
             </div>
-            <div class="meta">
+            <div class="meta col">
               <span class="bigger">
                 <a href="/{{ session.username }}">{{ session.username }}</a>
               </span>
               <span class="fade">ただいま</span>
               <div class="sep5"></div>
               <div class="stats">
-                收藏<span class="num"> 3</span>
-                买了<span class="num"> 14</span>
-                喜欢<span class="num"> 16</span>
+                <div class="col">
+                  <div>收藏 &gt;</div>
+                  <div class="num"> 3</div>
+                </div>
+                <div class="col">
+                <div>拥有 &gt;</div>
+                <div class="num"> 14</div>
+                </div>
+                <div class="col">
+                <div>喜欢！</div>
+                <div class="num"> 16</div>
+                </div>
               </div>
             </div>
           </div>
@@ -74,10 +55,13 @@
         </div>
       </div>
       <div id="foot">
-        <div id="foot_main">
-          <strong><a href="/about">关于</a></strong>  |  <strong><a href="/faq">问题</a></strong>  |  <strong><a href="/ad">广告</a></strong>
+        <div id="foot_main" class="round">
+          <strong><a href="/about">关于</a></strong>
+          <strong><a href="/help">帮助</a></strong>
+          <strong><a href="/ad">广告</a></strong>
         </div>
       </div>
     </div>
+    <!-- javascripts -->
   </body>
 </html>
