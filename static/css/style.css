@@ -12,7 +12,6 @@ body {
   margin: 0;
   padding: 0;
   max-height: 100%;
-  overflow: hidden;
 }
 
 h1 {
@@ -74,7 +73,7 @@ a:link, a:visited, a:active {
 }
 
 #side {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -94,8 +93,7 @@ a:link, a:visited, a:active {
 }
 
 #wrap {
-  position: fixed;
-  overflow: auto;
+  position: absolute;
   padding: 12px 0 30px 0;
   top: 0;
   right: 0;
@@ -105,7 +103,7 @@ a:link, a:visited, a:active {
 
 #main {
   margin: 0 auto;
-  padding: 12px 0 30px 0;
+  width: 818;
 }
 
 #content {
@@ -152,10 +150,7 @@ a:link, a:visited, a:active {
   display: inline-block;
   vertical-align: middle;
   padding: 5px;
-}
 
-.box .bar {
-  display: inline-block;
   zoom: 1;
   *display: inline;
 }
@@ -169,7 +164,7 @@ a:link, a:visited, a:active {
 
 .entry {
   margin: 0 5px;
-  width: 600px;
+  width: 460px;
 }
 
 .thumb {
@@ -216,7 +211,7 @@ form.user .shift {
 }
 
 form.add .url {
-  width: 600px;
+  width: 621px;
   font-size: 23px;
   border: 1px solid #ccc;
 }
