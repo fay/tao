@@ -155,6 +155,10 @@ a:link, a:visited, a:active {
   *display: inline;
 }
 
+.stats .col {
+  padding: 0;
+}
+
 .like {
   margin-right: 4px;
   margin-left: 7px;
