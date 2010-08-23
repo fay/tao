@@ -19,8 +19,8 @@
           </div>
         </div>
         <div class="entry col">
-          <a href="{{ b.url }}" lass="bigger">
-            {{ b.title }}
+          <a href="{{ b.key().name() }}" class="bigger">
+            {{ b.title }} 
           </a>
           <div class="flat"></div>
         </div>
@@ -28,7 +28,7 @@
           <a href="/n2n3">
             <img src="/static/images/missing.jpg">
           </a>
-          <div>n2n3</div>
+          <div>{%for user in b.userurl_set %}{{user.who}}{%endfor%}</div>
         </div>
       </div>
     {% endfor %}

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title></title>
+	<title>{{url.title}}</title>
 	  <link href="/static/css/viewer.css" type="text/css" media="screen" rel="stylesheet" />
 	  <script src="/static/js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 	  <script>
@@ -38,6 +38,9 @@
 					{%if is_like%}不喜欢了?{%else%}喜欢{%endif%}
 				</a>
 				<b class="like_note">(已有<span class="like_count">{{url.like_set.count()}}</span>人喜欢此宝贝)</b></li>
+			<li class="favorite">
+				<a href="/add/url/1/?url={{url.key().name()}}" onmousedown="">收藏</a>
+			</li>
 		</ul>
 	</div>
 </div>
