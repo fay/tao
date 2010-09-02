@@ -82,11 +82,11 @@ def add():
         title = utils.fetch_title(url)
         beike = Beike(key_name=url, tags=[], title=title)
         beike = Beike(key_name=url, title=title)
+        beike.digger = user
         beike.put()
 
-    user_url = UserUrl.all().filter('who =', user).filter('url =', url).get()
-    tags = (user_url and user_url.tags and user_url.tags) or []
-    return render_template('add.html', url=beike, tags=tags)
+    flash('Whoa,you made it!')
+    return redirect('/')
 
 @app.route('/add/url/')
 @login_required
