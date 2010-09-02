@@ -160,14 +160,14 @@ a:link, a:visited, a:active {
 }
 
 .like {
-  margin-right: 4px;
-  margin-left: 7px;
+  margin-right: 3px;
+  margin-left: 6px;
   background: transparent;
   overflow: hidden;
 }
 
 .entry {
-  margin: 0 5px;
+  margin: 0 3px;
   width: 460px;
 }
 
