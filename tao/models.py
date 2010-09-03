@@ -31,7 +31,7 @@ class Tag(db.Model):
     return tag
 
 class Beike(db.Model):
-  url = db.StringProperty()
+<<<<<<< HEAD
   when = db.DateTimeProperty(auto_now_add=True)
   tags = db.ListProperty(db.Key)
   title = db.StringProperty()
