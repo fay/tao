@@ -276,10 +276,10 @@ form.add .url {
 
 /* ie6 */
 * html, body {
-  padding: 0 0 0 200px;
+  *padding: 0 0 0 200px;
 }
 
 * html #main {
-  height: 100%;
-  width: 100%;
+  *height: 100%;
+  *width: 100%;
 }
