@@ -50,16 +50,16 @@
     </div>
     <div id="wrap">
       <div id="main">
-        <div id="content">
           {% block content %}{% endblock %}
-        </div>
-      </div>
-      <div id="foot">
-        <div id="foot_main" class="round">
-          <strong><a href="/about">关于</a></strong>
-          <strong><a href="/help">帮助</a></strong>
-          <strong><a href="/ad">广告</a></strong>
-        </div>
+          {% block foot%}
+          <div id="foot">
+             <div id="foot_main" class="round">
+             <strong><a href="/about">关于</a></strong>
+             <strong><a href="/help">帮助</a></strong>
+             <strong><a href="/ad">广告</a></strong>
+             </div>
+         </div>
+         {% endblock %}
       </div>
     </div>
     <!-- javascripts -->

@@ -77,7 +77,7 @@ def add():
 
     user = utils.get_current_user(session)
     beike = Beike.get_by_key_name(url)
-
+    logging.error(request.args.get('tag'))
     if not beike:
         title = utils.fetch_title(url)
         beike = Beike(key_name=url, tags=[], title=title)

@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="content">
+
     {% include "add_form.html" %}
   <div class="box">
     {% for b in bs %}
       <div class="cell">
         <div class="like col">
           <div class="likes bar col">
-            <div>23</div>
+            <div class="stat">23</div>
             <div>喜欢</div>
           </div>
-          <div class="bar col">
-            <div>14</div>
+          <div class="own bar col">
+            <div class="stat">14</div>
             <div>拥有</div>
           </div>
-          <div class="bar col">
-            <div>16</div>
+          <div class="fav bar col">
+            <div class="stat">16</div>
             <div>收藏</div>
           </div>
         </div>
         <div class="entry col">
-          <a href="{{ b.key().name() }}" class="bigger">
+          <a href="/view/{{ b.key() }}" class="bigger">
             {{ b.title }}
           </a>
           <div class="flat"></div>
@@ -33,4 +35,5 @@
       </div>
     {% endfor %}
   </div>
+</div>
 {% endblock %}
