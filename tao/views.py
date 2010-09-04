@@ -80,9 +80,7 @@ def add():
 
     if not beike:
         title = utils.fetch_title(url)
-        beike = Beike(key_name=url, tags=[], title=title)
-        beike = Beike(key_name=url, title=title)
-        beike.digger = user
+        beike = Beike(key_name=url, title=title, digger=user)
         beike.put()
 
     flash('Whoa,you made it!')
