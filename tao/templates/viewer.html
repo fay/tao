@@ -1,9 +1,51 @@
-{% extends "base.html" %}
-{% block content %}
+<!doctype html>
+<html>
+<head>
+	<title>{{url.title}}</title>
+	  <link href="/static/css/viewer.css" type="text/css" media="screen" rel="stylesheet" />
+	  <script src="/static/js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+	  <script>
+	    function like(url){
+            if('{{session.username}}' == 'None' || '{{session.username}}' == ''){
+                alert('先登录吧!'); 
+                window.location.href = "/login";
+                return ;
+            }
+            var isLike =  $('#url_'+url).attr("class") == 'liked' ? true : false;
+            if(isLike){
+                $.ajax({ url: "/like/"+url, success: function(){
+                 $('#url_'+url).attr("class",'unliked'); 
+                 $('#url_'+url).text("不喜欢了？");
+                 }});
+            }else{
+                $.ajax({ url: "/like/"+url+"?unlike=true", success: function(){
+                 $('#url_'+url).attr("class",'liked'); 
+                 $('#url_'+url).text("喜欢");
+                 }});
+            }
+ 		}
+	  </script>
+</head>
+<body>
+<div class="nav">
+	<div class="menu">
+		<a class="home" href="/">Home</a>
+	</div>
+	<div class="control">
+		<ul>
+			<li class="like"><strong>❤</strong>
+				<a id="url_{{url.key()}}"  class="{%if is_like%}unliked{%else%}liked{%endif%}" href="#" onmousedown="like('{{url.key()}}');">
+					{%if is_like%}不喜欢了?{%else%}喜欢{%endif%}
+				</a>
+				<b class="like_note">(已有<span class="like_count">{{url.like_set.count()}}</span>人喜欢此宝贝)</b></li>
+			<li class="favorite">
+				<a href="/add/url/1/?url={{url.key().name()}}" onmousedown="">收藏</a>
+			</li>
+		</ul>
+	</div>
+</div>
 <div id="frame">
 	<iframe src="{{url.key().name()}}" id="browser"></iframe>
 </div>
-{% endblock %}
-{% block foot%}
-{% endblock %}
-
+</body>
+</html>
