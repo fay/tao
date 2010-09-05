@@ -227,6 +227,9 @@ form.add .url {
   width: 621px;
   font-size: 23px;
   border: 1px solid #ccc;
+  padding: 5px 8px 0 6px;
+  border-bottom-color: #999;
+  border-right-color: #999;
 }
 
 .q {
