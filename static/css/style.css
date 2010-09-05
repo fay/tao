@@ -173,7 +173,7 @@ a.bigger {
 
 .entry {
   margin: 0 3px;
-  width: 500px;
+  width: 490px;
 }
 
 .thumb {
@@ -224,7 +224,7 @@ form.user .shift {
 }
 
 form.add .url {
-  width: 621px;
+  width: 610px;
   font-size: 23px;
   border: 1px solid #ccc;
   padding: 5px 8px 0 6px;
