@@ -152,7 +152,7 @@ a.bigger {
 
 .col {
   text-align: center;
-  display: inline-block;
+  display: table-cell;
   vertical-align: middle;
   padding: 5px;
 
@@ -173,7 +173,7 @@ a.bigger {
 
 .entry {
   margin: 0 3px;
-  width: 460px;
+  width: 500px;
 }
 
 .thumb {
